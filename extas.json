@@ -1,0 +1,22 @@
+{
+  "name": "extas/crawlers-jsonrpc",
+  "installer_version": 3,
+  "crawlers": [
+    {
+      "name": "jsonrpc__doc_comment",
+      "title": "[JSON RPC] By doc comment",
+      "description": "Search JSON RPC operations by classes doc comments.",
+      "class": "extas\\components\\crawlers\\jsonrpc\\ByDocComment",
+      "parameters": {},
+      "tags": ["jsonrpc"]
+    },
+    {
+      "name": "jsonrpc__install_section",
+      "title": "[JSON RPC] By Install section",
+      "description": "Search JSON RPC operations by InstallSection.",
+      "class": "extas\\components\\crawlers\\jsonrpc\\ByInstallSection",
+      "parameters": {},
+      "tags": ["jsonrpc"]
+    }
+  ]
+}
