@@ -4,8 +4,6 @@ namespace tests\crawlers;
 use extas\components\console\TSnuffConsole;
 use extas\components\crawlers\jsonrpc\ByDocComment;
 use extas\components\crawlers\jsonrpc\ByInstallSection;
-use extas\components\plugins\init\InitGenerators;
-use extas\components\plugins\install\InstallJsonRpcOperations;
 
 use tests\DocCommentNotADefaultPluginWith;
 use tests\DocCommentOperationWith;
@@ -13,6 +11,7 @@ use tests\DocCommentOperationWith;
 use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
+use tests\InstallTestSection;
 
 /**
  * Class CrawlerTest
@@ -40,20 +39,13 @@ class CrawlerTest extends TestCase
         $plugins = $crawler();
         $this->assertCount(1, $plugins);
         $plugin = array_shift($plugins);
-        $this->assertTrue(in_array(
-            get_class($plugin),
-            [
-                InstallJsonRpcOperations::class,
-                InitGenerators::class
-            ]
-        ));
+        $this->assertEquals(get_class($plugin), InstallTestSection::class);
 
         $crawler = new ByInstallSection([
             ByInstallSection::FIELD__INPUT => $this->getTestInput(
                 ByInstallSection::OPTION__PREFIX,
                 ByInstallSection::OPTION__PATH,
-                'PluginInstallMy',
-                '/tests'
+                'PluginInstallMy'
             ),
             ByInstallSection::FIELD__OUTPUT => $this->getOutput()
         ]);
@@ -77,8 +69,7 @@ class CrawlerTest extends TestCase
             ByDocComment::FIELD__INPUT => $this->getTestInput(
                 ByDocComment::OPTION__DOC_PREFIX,
                 ByDocComment::OPTION__DOC_PATH,
-                'DocComment',
-                '/tests'
+                'DocComment'
             ),
             ByDocComment::FIELD__OUTPUT => $this->getOutput()
         ]);
@@ -102,18 +93,16 @@ class CrawlerTest extends TestCase
      * @param string $prefixName
      * @param string $pathName
      * @param string $prefix
-     * @param string $path
      * @return InputInterface
      */
     protected function getTestInput(
         string $prefixName = ByInstallSection::OPTION__PREFIX,
         string $pathName = ByInstallSection::OPTION__PATH,
-        string $prefix = 'InstallJson',
-        string $path = '/src/components'
+        string $prefix = 'InstallTest'
     ): InputInterface
     {
         return $this->getInput([
-            $pathName => getcwd() . $path,
+            $pathName => getcwd() . '/tests',
             $prefixName => $prefix
         ]);
     }
