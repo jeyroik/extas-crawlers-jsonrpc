@@ -3,7 +3,7 @@
   "description": "JSON RPC crawlers package for extas",
   "require": {
     "jeyroik/extas-foundation": "5.*",
-    "jeyroik/extas-crawlers": "5.*",
+    "jeyroik/extas-crawlers": "0.*",
     "jeyroik/extas-console": "0.*"
   },
   "require-dev": {
