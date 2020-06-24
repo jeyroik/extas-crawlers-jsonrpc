@@ -4,7 +4,8 @@
   "require": {
     "jeyroik/extas-foundation": "5.*",
     "jeyroik/extas-crawlers": "0.*",
-    "jeyroik/extas-console": "0.*"
+    "jeyroik/extas-console": "0.*",
+    "symfony/finder": "5.*"
   },
   "require-dev": {
     "phpunit/phpunit": "^9",
