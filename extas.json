@@ -17,6 +17,14 @@
       "class": "extas\\components\\crawlers\\jsonrpc\\ByInstallSection",
       "parameters": {},
       "tags": ["jsonrpc"]
+    },
+    {
+      "name": "jsonrpc__dynamic_plugins",
+      "title": "[JSON RPC] By dynamic plugins",
+      "description": "Search JSON RPC operations by dynamic plugins.",
+      "class": "extas\\components\\crawlers\\jsonrpc\\ByDynamicPlugins",
+      "parameters": {},
+      "tags": ["jsonrpc"]
     }
   ]
 }

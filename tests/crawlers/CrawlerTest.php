@@ -3,8 +3,11 @@ namespace tests\crawlers;
 
 use extas\components\console\TSnuffConsole;
 use extas\components\crawlers\jsonrpc\ByDocComment;
+use extas\components\crawlers\jsonrpc\ByDynamicPlugins;
 use extas\components\crawlers\jsonrpc\ByInstallSection;
 
+use extas\components\items\SnuffItem;
+use extas\components\repositories\TSnuffRepositoryDynamic;
 use tests\DocCommentNotADefaultPluginWith;
 use tests\DocCommentOperationWith;
 
@@ -22,12 +25,21 @@ use tests\InstallTestSection;
 class CrawlerTest extends TestCase
 {
     use TSnuffConsole;
+    use TSnuffRepositoryDynamic;
 
     protected function setUp(): void
     {
         parent::setUp();
         $env = Dotenv::create(getcwd() . '/tests/');
         $env->load();
+        $this->createSnuffDynamicRepositories([
+            ['snuffRepository', 'name', SnuffItem::class]
+        ]);
+    }
+
+    protected function tearDown(): void
+    {
+        $this->deleteSnuffDynamicRepositories();
     }
 
     public function testCrawlByInstallSection()
@@ -85,6 +97,23 @@ class CrawlerTest extends TestCase
         $this->assertTrue(
             in_array(get_class($plugin), $foundMap),
             'Incorrect operation instance: ' . get_class($plugin)
+        );
+    }
+
+    public function testByDynamicPlugins()
+    {
+        $crawler = new ByDynamicPlugins([
+            ByDynamicPlugins::FIELD__INPUT => $this->getTestInput(
+                ByDynamicPlugins::OPTION__PREFIX,
+                ByDynamicPlugins::OPTION__PATH,
+                'dyn.test'
+            ),
+            ByDynamicPlugins::FIELD__OUTPUT => $this->getOutput()
+        ]);
+        $operations = $crawler();
+        $this->assertCount(
+            1,
+            $operations, 'Incorrect operations found: ' . print_r($operations, true)
         );
     }
 

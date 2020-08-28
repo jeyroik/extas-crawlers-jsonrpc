@@ -10,3 +10,8 @@
 # Description
 
 JSON RPC crawlers for Extas.
+
+# Install
+
+`# vendor/bin/extas init`
+`# vendor/bin/extas install`

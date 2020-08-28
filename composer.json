@@ -6,13 +6,16 @@
     "jeyroik/extas-crawlers": "0.*",
     "jeyroik/extas-console": "0.*",
     "symfony/finder": "5.*",
-    "jeyroik/extas-installer": "3.*"
+    "jeyroik/extas-installer": "3.*",
+    "jeyroik/extas-installer-plugins": "0.*"
   },
   "require-dev": {
     "phpunit/phpunit": "^9",
     "vlucas/phpdotenv": "^3.4",
     "jeyroik/extas-repositories-mongo": "1.*",
-    "jeyroik/extas-snuffbox": "0.*"
+    "jeyroik/extas-snuffbox": "0.*",
+    "jeyroik/extas-snuffbox-repositories": "0.*",
+    "jeyroik/extas-repositories": "0.*"
   },
   "autoload": {
     "psr-4": {
