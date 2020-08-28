@@ -91,6 +91,7 @@ class ByDynamicPlugins extends CrawlerDispatcher
             $repoName = $plugin[IPluginInstall::FIELD__REPOSITORY] ?? '';
             if (!$repoName) {
                 $this->writeLn(['Missed repository']);
+                continue;
             }
 
             $repo = $this->$repoName();

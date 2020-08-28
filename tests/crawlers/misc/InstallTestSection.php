@@ -1,5 +1,5 @@
 <?php
-namespace tests;
+namespace tests\crawlers\misc;
 
 use extas\components\items\SnuffItem;
 use extas\components\plugins\install\InstallSection;

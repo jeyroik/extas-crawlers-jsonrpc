@@ -1,9 +1,0 @@
-{
-  "plugins_install": [
-    {
-      "repository": "snuffRepository",
-      "name": "snuff item",
-      "section": "snuff_items"
-    }
-  ]
-}

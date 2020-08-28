@@ -8,13 +8,14 @@ use extas\components\crawlers\jsonrpc\ByInstallSection;
 
 use extas\components\items\SnuffItem;
 use extas\components\repositories\TSnuffRepositoryDynamic;
-use tests\DocCommentNotADefaultPluginWith;
-use tests\DocCommentOperationWith;
+use tests\crawlers\misc\DocCommentNotADefaultPluginWith;
+use tests\crawlers\misc\DocCommentOperationWith;
 
 use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
-use tests\InstallTestSection;
+use tests\crawlers\misc\InstallTestSection;
+use tests\crawlers\misc\Repository;
 
 /**
  * Class CrawlerTest
@@ -34,6 +35,9 @@ class CrawlerTest extends TestCase
         $env->load();
         $this->createSnuffDynamicRepositories([
             ['snuffRepository', 'name', SnuffItem::class]
+        ]);
+        $this->registerSnuffRepos([
+            'propRepo' => Repository::class
         ]);
     }
 
@@ -112,7 +116,7 @@ class CrawlerTest extends TestCase
         ]);
         $operations = $crawler();
         $this->assertCount(
-            1,
+            2,
             $operations, 'Incorrect operations found: ' . print_r($operations, true)
         );
     }

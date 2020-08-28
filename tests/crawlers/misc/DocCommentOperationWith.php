@@ -1,5 +1,5 @@
 <?php
-namespace tests;
+namespace tests\crawlers\misc;
 
 /**
  * Class OperationWithDocComment

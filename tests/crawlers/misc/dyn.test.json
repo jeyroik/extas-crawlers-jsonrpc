@@ -1,0 +1,19 @@
+{
+  "plugins_install": [
+    {
+      "repository": "snuffRepository",
+      "name": "snuff item",
+      "section": "snuff_items"
+    },
+    {
+      "repository": "",
+      "name": "snuff item",
+      "section": "snuff_items"
+    },
+    {
+      "repository": "propRepo",
+      "name": "snuff item",
+      "section": "snuff_items"
+    }
+  ]
+}
