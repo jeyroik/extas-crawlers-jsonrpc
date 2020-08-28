@@ -99,7 +99,7 @@ class ByDynamicPlugins extends CrawlerDispatcher
             $info[] = [
                 'item_class' => $params['itemClass'] ?? '',
                 'entity_name' => $plugin['name'] ?? '',
-                'repository' => $repo
+                'repository' => $repoName
             ];
         }
 
