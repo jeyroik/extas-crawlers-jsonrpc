@@ -3,15 +3,19 @@ namespace tests\crawlers;
 
 use extas\components\console\TSnuffConsole;
 use extas\components\crawlers\jsonrpc\ByDocComment;
+use extas\components\crawlers\jsonrpc\ByDynamicPlugins;
 use extas\components\crawlers\jsonrpc\ByInstallSection;
 
-use tests\DocCommentNotADefaultPluginWith;
-use tests\DocCommentOperationWith;
+use extas\components\items\SnuffItem;
+use extas\components\repositories\TSnuffRepositoryDynamic;
+use tests\crawlers\misc\DocCommentNotADefaultPluginWith;
+use tests\crawlers\misc\DocCommentOperationWith;
 
 use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
-use tests\InstallTestSection;
+use tests\crawlers\misc\InstallTestSection;
+use tests\crawlers\misc\Repository;
 
 /**
  * Class CrawlerTest
@@ -22,12 +26,24 @@ use tests\InstallTestSection;
 class CrawlerTest extends TestCase
 {
     use TSnuffConsole;
+    use TSnuffRepositoryDynamic;
 
     protected function setUp(): void
     {
         parent::setUp();
         $env = Dotenv::create(getcwd() . '/tests/');
         $env->load();
+        $this->createSnuffDynamicRepositories([
+            ['snuffRepository', 'name', SnuffItem::class]
+        ]);
+        $this->registerSnuffRepos([
+            'propRepo' => Repository::class
+        ]);
+    }
+
+    protected function tearDown(): void
+    {
+        $this->deleteSnuffDynamicRepositories();
     }
 
     public function testCrawlByInstallSection()
@@ -85,6 +101,23 @@ class CrawlerTest extends TestCase
         $this->assertTrue(
             in_array(get_class($plugin), $foundMap),
             'Incorrect operation instance: ' . get_class($plugin)
+        );
+    }
+
+    public function testByDynamicPlugins()
+    {
+        $crawler = new ByDynamicPlugins([
+            ByDynamicPlugins::FIELD__INPUT => $this->getTestInput(
+                ByDynamicPlugins::OPTION__PREFIX,
+                ByDynamicPlugins::OPTION__PATH,
+                'dyn.test'
+            ),
+            ByDynamicPlugins::FIELD__OUTPUT => $this->getOutput()
+        ]);
+        $operations = $crawler();
+        $this->assertCount(
+            2,
+            $operations, 'Incorrect operations found: ' . print_r($operations, true)
         );
     }
 
