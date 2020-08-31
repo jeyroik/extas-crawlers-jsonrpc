@@ -70,6 +70,8 @@ class ByInstallSection extends CrawlerDispatcher
         if ($plugin instanceof InstallSection || $plugin instanceof InitSection) {
             $plugins[] = $plugin;
         }
+
+        $this->commentLn(['[crawler][by install section] Prepared ' . count($plugins) . ' items']);
     }
 
     /**

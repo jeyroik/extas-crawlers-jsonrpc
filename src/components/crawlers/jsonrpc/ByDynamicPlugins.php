@@ -48,8 +48,15 @@ class ByDynamicPlugins extends CrawlerDispatcher
             CrawlerExtas::FIELD__PATH => getcwd()
         ]);
         $packages = $serviceCrawler();
+        $this->commentLn([
+            '[crawler][by dynamic plugins] Found ' . count($packages) . ' packages',
+            '[crawler][by dynamic plugins] Extracting details:',
+        ]);
 
-        return $this->extractDynamicPlugins($packages);
+        $result = $this->extractDynamicPlugins($packages);
+        $this->commentLn(['[crawler][by dynamic plugins] Prepared ' . count($result) . ' items']);
+
+        return $result;
     }
 
     /**
@@ -68,10 +75,14 @@ class ByDynamicPlugins extends CrawlerDispatcher
     protected function extractDynamicPlugins(array $packages): array
     {
         $pluginsList = [];
-
-        foreach ($packages as $package) {
+        $index = 0;
+        foreach ($packages as $name => $package) {
+            $index++;
             if (isset($package['plugins_install'])) {
                 $pluginsList = array_merge($pluginsList, $package['plugins_install']);
+                $this->commentLn([$index . '. [OK] Found "plugin_install" in the "' . $name . '"']);
+            } else {
+                $this->infoLn([$index . '. [X] Missed "plugins_install" in the "' . $name . '"']);
             }
         }
 
@@ -90,7 +101,7 @@ class ByDynamicPlugins extends CrawlerDispatcher
         foreach ($plugins as $plugin) {
             $repoName = $plugin[IPluginInstall::FIELD__REPOSITORY] ?? '';
             if (!$repoName) {
-                $this->writeLn(['Missed repository']);
+                $this->infoLn(['Missed repository']);
                 continue;
             }
 

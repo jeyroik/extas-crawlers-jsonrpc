@@ -1,3 +1,7 @@
+# 0.2.3
+
+- Verbosity added.
+
 # 0.2.2
 
 - Crawlers options added to the `extas.json`.

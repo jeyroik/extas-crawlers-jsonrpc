@@ -29,6 +29,8 @@ class ByDocComment extends ByInstallSection
                 $plugins[] = $plugin;
             }
         }
+
+        $this->commentLn(['[crawler][by doc comment] Prepared ' . count($plugins) . ' items']);
     }
 
     /**
