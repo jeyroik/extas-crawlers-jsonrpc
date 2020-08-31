@@ -121,6 +121,26 @@ class CrawlerTest extends TestCase
         );
     }
 
+    public function testByDynamicPluginsMissed()
+    {
+        $output = $this->getOutput(true);
+        $crawler = new ByDynamicPlugins([
+            ByDynamicPlugins::FIELD__INPUT => $this->getTestInput(
+                ByDynamicPlugins::OPTION__PREFIX,
+                ByDynamicPlugins::OPTION__PATH,
+                'dyn.empty'
+            ),
+            ByDynamicPlugins::FIELD__OUTPUT => $output
+        ]);
+        $operations = $crawler();
+        $outputText = $output->fetch();
+        $this->assertStringContainsString(
+            '[X] Missed "plugins_install" in the "test/empty"',
+            $outputText,
+            'Incorrect output: ' . $outputText
+        );
+    }
+
     /**
      *
      * @param string $prefixName
