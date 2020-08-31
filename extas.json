@@ -26,5 +26,61 @@
       "parameters": {},
       "tags": ["jsonrpc"]
     }
+  ],
+  "commands_options": [
+    {
+      "name": "prefix-jsonrpc-dynamic-plugins",
+      "shortcut": "",
+      "mode": 4,
+      "default": "extas",
+      "description": "Extas configuration file prefix",
+      "title": "Dynamic plugins config prefix",
+      "commands": ["extas-jsonrpc"]
+    },
+    {
+      "name": "prefix-jsonrpc-install",
+      "shortcut": "",
+      "mode": 4,
+      "default": "Install",
+      "description": "Classes prefix for JSON RPC crawler by InstallSection",
+      "title": "Prefix Install",
+      "commands": ["extas-jsonrpc"]
+    },
+    {
+      "name": "prefix-jsonrpc-doc-comment",
+      "shortcut": "",
+      "mode": 4,
+      "default": "",
+      "description": "Classes prefix for JSON RPC crawler by doc comments",
+      "title": "Prefix Doc comment",
+      "commands": ["extas-jsonrpc"]
+    },
+    {
+      "name": "filter",
+      "shortcut": "",
+      "mode": 4,
+      "default": "",
+      "description": "Operations names filter",
+      "title": "Filter",
+      "commands": ["extas-jsonrpc"]
+    },
+    {
+      "name": "path-jsonrpc-install",
+      "shortcut": "",
+      "mode": 4,
+      "default": "",
+      "description": "Path for crawling JSON RPC operation",
+      "title": "JSOn RPC operation path",
+      "commands": ["extas-jsonrpc"]
+    },
+    {
+      "name": "path-jsonrpc-doc-comment",
+      "shortcut": "",
+      "mode": 4,
+      "default": "",
+      "description": "Path for crawling JSON RPC operation",
+      "title": "JSOn RPC operation path",
+      "commands": ["extas-jsonrpc"]
+    }
   ]
 }
