@@ -1,3 +1,7 @@
+# 0.2.2
+
+- Crawlers options added to the `extas.json`.
+
 # 0.2.1
 
 - Set repository name instead of repository object into plugin `repository` field.
