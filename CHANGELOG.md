@@ -1,3 +1,7 @@
+# 0.2.4
+
+- Crawler "by dynamic plugins" fixed.
+
 # 0.2.3
 
 - Verbosity added.

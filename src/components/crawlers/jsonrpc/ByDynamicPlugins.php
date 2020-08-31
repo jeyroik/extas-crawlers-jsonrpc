@@ -108,7 +108,7 @@ class ByDynamicPlugins extends CrawlerDispatcher
             $repo = $this->$repoName();
             $params = $this->getDefaultProperties($repo);
             $info[] = [
-                'item_class' => $params['itemClass'] ?? '',
+                'item_class' => $params['class'] ?? '',
                 'entity_name' => $plugin['name'] ?? '',
                 'repository' => $repoName
             ];
